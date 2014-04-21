@@ -5,13 +5,15 @@
 	
 	Todo
 		* Modify width of text box appropriately (currently estimated)
-		* Auto-complete display and arrow/mouse select
  */
 ( function ( $ ) {
 	
 	$.fn.bubbleInput = function( options ) {
 		if( !options ) {
-			return this[0].bubbleInput;
+			if(this[0].bubbleInput) {
+				return this[0].bubbleInput;
+			}
+			options = {};
 		}
 		
 		return this.each(function() {
