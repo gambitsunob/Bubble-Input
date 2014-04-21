@@ -34,7 +34,6 @@
 			function drop(e) {
 				e.preventDefault();
 				var offset = e.originalEvent.offsetX;
-				console.log(offset);
 				var text = e.originalEvent.dataTransfer.getData("Text");
 				var clss = e.originalEvent.dataTransfer.getData("clss");
 				elem[0].bubbleInput.add(text, clss, offset);
@@ -51,6 +50,8 @@
 				var li = $('<li class="input"></li>');
 				var input = $('<input type="text" />');
 				li.append(input);
+				input.width(30);
+				input.parent().width(30);
 				if(index !== undefined) {
 					ul.find('li').eq(index).after(li);
 				} else {
@@ -64,12 +65,12 @@
 					return false;
 				});
 				input.keydown(function(e){
-					console.log(e);
 					$el = $(this);
 					$parent = $el.parent();
 					
-					$el.width(30 + $el.val().length * 8);
-					$parent.width($el.width());
+					var width = 30 + $el.val().length * 8;
+					$el.width(width);
+					$parent.width(width);
 					
 					if(e.keyCode === 37 && $el.val() === '') { // Arrow Key Left
 						if ($parent.is(':first-child')) return;
@@ -238,7 +239,7 @@
 					$(elements[selected]).addClass('selected');					
 				},
 				search: function(term) {
-					if(term === this.lastSearch) return;
+					if(term === this.lastSearch || term === '') return;
 					this.lastSearch = term;
 					var results = settings.getData(term);
 					var autocomplete = elem.find('ul');
