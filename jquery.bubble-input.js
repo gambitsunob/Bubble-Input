@@ -167,8 +167,11 @@
 						}						
 						var bubble = $('<li class="bubble"><p>' + text + '</p></li>');
 						bubble.click(function() {
+							var had = $(this).hasClass('selected');
 							elem.find('li.bubble').removeClass('selected');
-							$(this).addClass('selected');
+							if(!had) {
+								$(this).addClass('selected');
+							}
 							return false;
 						});
 						if(ind === -1) {
