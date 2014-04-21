@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="jquery.bubble-input.css" />
+		<style>
+			.variable {
+				background-color: #008800 !important;
+				color: white !important;
+			}
+			.constant {
+				background-color: #0000aa !important;
+				color: white !important;
+			}
+			.operation {
+				background-color: #cccccc !important;
+				color: white !important;
+				padding: 5px;
+				width: 40px;
+				border: 1px solid #999;
+			}
+			ul.bubble-input .selected {
+				background-color: #8888cc !important;
+			}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="jquery.bubble-input.js"></script>
+		<script type="text/javascript">
+			function drag(e, elem) {
+				e.dataTransfer.setData("text", $(elem).text()); 
+				e.dataTransfer.setData("clss", $(elem).data('message-type')); 
+			}
+		</script>
+	</head>
+	<body>
+		<div style="margin: 50px;">
+			<div style="margin-bottom: 5px;">
+				<button class="operation">&&</button>
+				<button class="operation">||</button>
+				<button class="operation"><</button>
+				<button class="operation">></button>
+				<button class="operation">(</button>
+				<button class="operation">)</button>
+			</div>
+			<div id="bubbleInput">
+			</div>
+		</div>
+		<div class="draggable" data-message-type="variable" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			g:Humidity
+		</div>
+		<div class="draggable" data-message-type="variable" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			g:Weather
+		</div>
+		<div class="draggable" data-message-type="constant" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			c:15
+		</div>
+		<div class="draggable" data-message-type="operation" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			<
+		</div>
+		<div class="draggable" data-message-type="operation" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			>
+		</div>
+		<div class="draggable" data-message-type="operation" draggable="true" ondragstart="drag(event, this)" width="336" height="69" style="width:100px; background-color: #ccc; padding: 5px; margin: 5px; border-radius: 5px">
+			&&
+		</div>
+		<script type="text/javascript">
+			$('button.operation').click(function() {
+				$('#bubbleInput').bubbleInput().add($(this).text(), 'operation');
+			});
+			$('#bubbleInput').bubbleInput({
+				autocomplete: {
+					getData: function(search) {
+						if(search === '') {
+							return [];
+						}
+						var words = [
+							{ text: 'hello', clss: 'variable' }, 
+							{ text: 'help', clss: 'variable' }, 
+							{ text: 'helpful', clss: 'variable' }, 
+							{ text: '&&', clss: 'operation' }, 
+							{ text: '||', clss: 'operation' }, 
+							{ text: '<', clss: 'operation' }, 
+							{ text: '>', clss: 'operation' }, 
+							{ text: '==', clss: 'operation' }, 
+							{ text: '!=', clss: 'operation' }, 
+							{ text: '(', clss: 'operation' }, 
+							{ text: ')', clss: 'operation' }, 
+						];
+						var results = [];
+						for(var i = 0; i < words.length; i++) {
+							if(words[i].text.indexOf(search) > -1) {
+								results.push(words[i]);
+							}
+						}
+						return results;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

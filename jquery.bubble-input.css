@@ -1,0 +1,60 @@
+.bubble-input {
+	overflow: hidden;
+	height: auto !important;
+	border: 1px solid #8496ba;
+	cursor: text;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	clear: left;
+}
+
+.bubble-input .bubble {
+	overflow: hidden;
+	height: auto !important;
+	margin: 5px;
+	padding: 5px;
+	cursor: default;
+	border: 1px solid #ccd5e4;
+	font-size: 11px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	white-space: nowrap;
+}
+
+.bubble-input .input {
+	padding: 3px 8px;
+	margin: 2px 0;
+	float: left;
+}
+
+.bubble-input input {
+	border: 0;
+	padding: 3px 8px;
+	margin: 2px 0;
+	-webkit-appearance: caret;
+	outline: none;
+	width: 30px;
+}
+
+.bubble-input p {
+	display: inline;
+}
+
+.bubble-input-autocomplete {
+	background-color: #ccc;
+	border: 1px solid black;
+}
+.bubble-input-autocomplete ul {
+	-webkit-padding-start: 0px;
+	margin: 0px;
+}
+.bubble-input-autocomplete ul li {
+	list-style: none;
+	padding: 10px;
+}
+.bubble-input-autocomplete ul li.selected {
+	background-color: #eee;
+}
